@@ -1,5 +1,5 @@
 <?php
 
-include "vue/_debut.inc.php";
+include "vue/vuedaccueil.php";
 
 ?>
