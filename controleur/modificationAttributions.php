@@ -1,6 +1,6 @@
 <?php
 
-include "vue/vuedaccueil.php";
+include("vue/template.php");
 include("modele/modele.php"); 
 include("_controlesEtGestionErreurs.inc.php");
 
