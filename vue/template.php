@@ -29,7 +29,7 @@ echo'
       <td class="menu"><a href="index.php">Accueil</a></td>
       <td class="menu"><a href="controleur/listeEtablissements.php">
       Gestion établissements</a></td>
-      <td class="menu"><a href="contoleur/consultationAttributions.php">
+      <td class="menu"><a href="controleur/consultationAttributions.php">
       Attributions chambres</a></td>
    </tr>
 </table>';
