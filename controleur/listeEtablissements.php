@@ -44,11 +44,11 @@ class='tabNonQuadrille'>
          <td width='52%'>$nom</td>
          
          <td width='16%' align='center'> 
-         <a href='detailEtablissement.php?id=$id'>
+         <a href='controleur/detailEtablissement.php?id=$id'>
          Voir détail</a></td>
          
          <td width='16%' align='center'> 
-         <a href='modificationEtablissement.php?action=demanderModifEtab&amp;id=$id'>
+         <a href='controleur/modificationEtablissement.php?action=demanderModifEtab&amp;id=$id'>
          Modifier</a></td>";
       	
          // S'il existe déjà des attributions pour l'établissement, il faudra
@@ -57,7 +57,7 @@ class='tabNonQuadrille'>
 			{
             echo "
             <td width='16%' align='center'> 
-            <a href='suppressionEtablissement.php?action=demanderSupprEtab&amp;id=$id'>
+            <a href='controleur/suppressionEtablissement.php?action=demanderSupprEtab&amp;id=$id'>
             Supprimer</a></td>";
          }
          else
@@ -72,7 +72,7 @@ class='tabNonQuadrille'>
    }
    echo "
    <tr class='ligneTabNonQuad'>
-      <td colspan='4'><a href='creationEtablissement.php?action=demanderCreEtab'>
+      <td colspan='4'><a href='controleur/creationEtablissement.php?action=demanderCreEtab'>
       Création d'un établissement</a ></td>
   </tr>
 </table>";

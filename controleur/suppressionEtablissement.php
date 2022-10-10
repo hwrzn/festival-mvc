@@ -34,9 +34,9 @@ if ($_REQUEST['action']=='demanderSupprEtab')
    echo "
    <br><center><h5>Souhaitez-vous vraiment supprimer l'établissement $nom ? 
    <br><br>
-   <a href='suppressionEtablissement.php?action=validerSupprEtab&amp;id=$id'>
+   <a href='controleur/suppressionEtablissement.php?action=validerSupprEtab&amp;id=$id'>
    Oui</a>&nbsp; &nbsp; &nbsp; &nbsp;
-   <a href='listeEtablissements.php?'>Non</a></h5></center>";
+   <a href='controleur/listeEtablissements.php?'>Non</a></h5></center>";
 }
 
 // Cas 2ème étape (on vient de suppressionEtablissement.php)
@@ -46,7 +46,7 @@ else
    supprimerEtablissement($connexion, $id);
    echo "
    <br><br><center><h5>L'établissement $nom a été supprimé</h5>
-   <a href='listeEtablissements.php?'>Retour</a></center>";
+   <a href='controleur/listeEtablissements.php?'>Retour</a></center>";
 }
 
 ?>

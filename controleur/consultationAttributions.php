@@ -30,7 +30,7 @@ if ($nbEtab!=0)
    echo "
    <table width='75%' cellspacing='0' cellpadding='0' align='center'
    <tr><td>
-   <a href='modificationAttributions.php?action=demanderModifAttrib'>
+   <a href='controleur/modificationAttributions.php?action=demanderModifAttrib'>
    Effectuer ou modifier les attributions</a></td></tr></table><br><br>";
    
    // POUR CHAQUE ÉTABLISSEMENT : AFFICHAGE D'UN TABLEAU COMPORTANT 2 LIGNES 

@@ -93,7 +93,7 @@ class='tabNonQuadrille'>
 </table>
 <table align='center'>
    <tr>
-      <td align='center'><a href='listeEtablissements.php'>Retour</a>
+      <td align='center'><a href='controleur/listeEtablissements.php'>Retour</a>
       </td>
    </tr>
 </table>";

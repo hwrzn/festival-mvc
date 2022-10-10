@@ -175,7 +175,7 @@ echo "
          </td>
       </tr>
       <tr>
-         <td colspan='2' align='center'><a href='listeEtablissements.php'>Retour</a>
+         <td colspan='2' align='center'><a href='controleur/listeEtablissements.php'>Retour</a>
          </td>
       </tr>
    </table>
