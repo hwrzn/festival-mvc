@@ -26,7 +26,7 @@ echo'
 <!--  Tableau contenant les menus -->
 <table width="80%" cellpadding="0" cellspacing="0" class="tabMenu" align="center">
    <tr>
-      <td class="menu"><a href="vue/index.php">Accueil</a></td>
+      <td class="menu"><a href="index.php">Accueil</a></td>
       <td class="menu"><a href="controleur/listeEtablissements.php">
       Gestion établissements</a></td>
       <td class="menu"><a href="contoleur/consultationAttributions.php">
