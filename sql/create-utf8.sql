@@ -1,5 +1,5 @@
 
-GRANT ALL ON festival . * TO 'festival'@'localhost' IDENTIFIED BY 'secret';
+GRANT ALL ON festival . * TO 'festival'@'localhost' IDENTIFIED BY '';
 
 DROP TABLE IF EXISTS Attribution;
 DROP TABLE IF EXISTS Groupe;

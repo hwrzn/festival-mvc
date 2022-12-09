@@ -1,7 +1,7 @@
 <?php
+  require 'template.php';
+?>
 
-echo '
-<br> 
 <table width="80%" cellspacing="0" cellpadding="0" align="center">
    <tr>  
       <td class="texteAccueil">
@@ -32,8 +32,4 @@ echo '
       </ul>
       </td>
    </tr>
-</table>';
-
-?>
-
-
+</table>

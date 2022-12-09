@@ -1,42 +1,25 @@
 <?php
 
-include("vue/template.php");
-include("modele/modele.php");  
-include("_controlesEtGestionErreurs.inc.php");
+  require 'template.php';
 
-// CONNEXION AU SERVEUR MYSQL PUIS SÉLECTION DE LA BASE DE DONNÉES festival
-
-$connexion=connect();
-if (!$connexion)
-{
-   ajouterErreur("Echec de la connexion au serveur MySql");
-   afficherErreurs();
-   exit();
-}
-/*if (!selectBase($connexion))
-{
-   ajouterErreur("La base de données festival est inexistante ou non accessible");
-   afficherErreurs();
-   exit();
-}*/
-
-$id=$_REQUEST['id'];  
+$connexion = $model->connect();
+$id =  $_REQUEST['id'];  
 
 // OBTENIR LE DÉTAIL DE L'ÉTABLISSEMENT SÉLECTIONNÉ
 
-$lgEtab=obtenirDetailEtablissement($connexion, $id);
+$lgEtab = $model->obtenirDetailEtablissement($connexion, $id);
 
-$nom=$lgEtab['nom'];
-$adresseRue=$lgEtab['adresseRue'];
-$codePostal=$lgEtab['codePostal'];
-$ville=$lgEtab['ville'];
-$tel=$lgEtab['tel'];
-$adresseElectronique=$lgEtab['adresseElectronique'];
-$type=$lgEtab['type'];
-$civiliteResponsable=$lgEtab['civiliteResponsable'];
-$nomResponsable=$lgEtab['nomResponsable'];
-$prenomResponsable=$lgEtab['prenomResponsable'];
-$nombreChambresOffertes=$lgEtab['nombreChambresOffertes'];
+$nom = $lgEtab['nom'];
+$adresseRue = $lgEtab['adresseRue'];
+$codePostal = $lgEtab['codePostal'];
+$ville = $lgEtab['ville'];
+$tel = $lgEtab['tel'];
+$adresseElectronique= $lgEtab['adresseElectronique'];
+$type = $lgEtab['type'];
+$civiliteResponsable = $lgEtab['civiliteResponsable'];
+$nomResponsable = $lgEtab['nomResponsable'];
+$prenomResponsable = $lgEtab['prenomResponsable'];
+$nombreChambresOffertes = $lgEtab['nombreChambresOffertes'];
 
 echo "
 <table width='60%' cellspacing='0' cellpadding='0' align='center' 
@@ -93,8 +76,9 @@ class='tabNonQuadrille'>
 </table>
 <table align='center'>
    <tr>
-      <td align='center'><a href='controleur/listeEtablissements.php'>Retour</a>
+      <td align='center'><a href='index.php?action=listeEtablissements'>Retour</a>
       </td>
    </tr>
 </table>";
+
 ?>

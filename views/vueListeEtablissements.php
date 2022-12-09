@@ -1,24 +1,6 @@
 <?php
 
-include("vue/template.php");
-include("modele/modele.php");  
-include("_controlesEtGestionErreurs.inc.php");
-
-// CONNEXION AU SERVEUR MYSQL PUIS SÉLECTION DE LA BASE DE DONNÉES festival
-
-$connexion=connect();
-if (!$connexion)
-{
-   ajouterErreur("Echec de la connexion au serveur MySql");
-   afficherErreurs();
-   exit();
-}
-/*if (!selectBase($connexion))
-{
-   ajouterErreur("La base de données festival est inexistante ou non accessible");
-   afficherErreurs();
-   exit();
-}*/
+require 'template.php';
 
 // AFFICHER L'ENSEMBLE DES ÉTABLISSEMENTS
 // CETTE PAGE CONTIENT UN TABLEAU CONSTITUÉ D'1 LIGNE D'EN-TÊTE ET D'1 LIGNE PAR
@@ -31,9 +13,10 @@ class='tabNonQuadrille'>
       <td colspan='4'>Etablissements</td>
    </tr>";
      
-   $req=obtenirReqEtablissements();
-   $rsEtab=$connexion->query($req);
-   $lgEtab=$rsEtab->fetch(PDO::FETCH_ASSOC);
+   $connexion = $model->connect();
+   $req = $model->obtenirReqEtablissements();
+   $rsEtab = $connexion->query($req);
+   $lgEtab = $rsEtab->fetch(PDO::FETCH_ASSOC);
    // BOUCLE SUR LES ÉTABLISSEMENTS
    while ($lgEtab!=FALSE)
    {
@@ -44,35 +27,35 @@ class='tabNonQuadrille'>
          <td width='52%'>$nom</td>
          
          <td width='16%' align='center'> 
-         <a href='controleur/detailEtablissement.php?id=$id'>
+         <a href='index.php?action=detailEtablissement&id=$id'>
          Voir détail</a></td>
          
          <td width='16%' align='center'> 
-         <a href='controleur/modificationEtablissement.php?action=demanderModifEtab&amp;id=$id'>
+         <a href='index.php?action=modificationEtablissement&id=$id&modif=demanderModifEtab'>
          Modifier</a></td>";
       	
          // S'il existe déjà des attributions pour l'établissement, il faudra
          // d'abord les supprimer avant de pouvoir supprimer l'établissement
-			if (!existeAttributionsEtab($connexion, $id))
+			if (!($model->existeAttributionsEtab($connexion, $id)))
 			{
             echo "
             <td width='16%' align='center'> 
-            <a href='controleur/suppressionEtablissement.php?action=demanderSupprEtab&amp;id=$id'>
+            <a href='index.php?action=supressionEtablissement&id=$id&modif=demanderSupprEtab'>
             Supprimer</a></td>";
          }
          else
          {
-            $attribution=obtenirNbOccup($connexion, $id);
+            $attribution = $model->obtenirNbOccup($connexion, $id);
             echo "
             <td width='16%'>&nbsp;($attribution Chambres)</td>";
 			}
 			echo "
       </tr>";
-      $lgEtab=$rsEtab->fetch(PDO::FETCH_ASSOC);
+      $lgEtab = $rsEtab->fetch(PDO::FETCH_ASSOC);
    }
    echo "
    <tr class='ligneTabNonQuad'>
-      <td colspan='4'><a href='controleur/creationEtablissement.php?action=demanderCreEtab'>
+      <td colspan='4'><a href='index.php?action=creationEtablissement&modif=demanderCreEtab'>
       Création d'un établissement</a ></td>
   </tr>
 </table>";

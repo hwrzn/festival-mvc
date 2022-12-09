@@ -1,6 +1,3 @@
-<?php
-
-echo'
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
 "http://www.w3.org/TR/html4/loose.dtd">
 <!-- TITRE ET MENUS -->
@@ -16,7 +13,7 @@ echo'
 <!--  Tableau contenant le titre -->
 <table width="100%" cellpadding="0" cellspacing="0">
    <tr> 
-      <td class="titre">Festival Sp\'or<br>
+      <td class="titre">Festival Sp'or<br>
       <span id="texteNiveau2" class="texteNiveau2">
       H&eacute;bergement des groupes</span><br>&nbsp;
       </td>
@@ -27,11 +24,10 @@ echo'
 <table width="80%" cellpadding="0" cellspacing="0" class="tabMenu" align="center">
    <tr>
       <td class="menu"><a href="index.php">Accueil</a></td>
-      <td class="menu"><a href="controleur/listeEtablissements.php">
+      <td class="menu"><a href="index.php?action=listeEtablissements">
       Gestion établissements</a></td>
-      <td class="menu"><a href="controleur/consultationAttributions.php">
+      <td class="menu"><a href="index.php?action=consultationAttributions">
       Attributions chambres</a></td>
    </tr>
-</table>';
-
-?>
+</table>
+<br>

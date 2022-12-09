@@ -1,55 +1,38 @@
 <?php
 
-include("vue/template.php");
-include("modele/modele.php"); 
-include("_controlesEtGestionErreurs.inc.php");
-
-// CONNEXION AU SERVEUR MYSQL PUIS SÉLECTION DE LA BASE DE DONNÉES festival
-
-$connexion=connect();
-if (!$connexion)
-{
-   ajouterErreur("Echec de la connexion au serveur MySql");
-   afficherErreurs();
-   exit();
-}
-/*if (!selectBase($connexion))
-{
-   ajouterErreur("La base de données festival est inexistante ou non accessible");
-   afficherErreurs();
-   exit();
-}*/
+require 'template.php';
 
 // CONSULTER LES ATTRIBUTIONS DE TOUS LES ÉTABLISSEMENTS
 
 // IL FAUT QU'IL Y AIT AU MOINS UN ÉTABLISSEMENT OFFRANT DES CHAMBRES POUR  
 // AFFICHER LE LIEN VERS LA MODIFICATION
-$nbEtab=obtenirNbEtabOffrantChambres($connexion);
+$connexion = $model->connect();
+$nbEtab = $model->obtenirNbEtabOffrantChambres($connexion);
 if ($nbEtab!=0)
 {
    echo "
    <table width='75%' cellspacing='0' cellpadding='0' align='center'
    <tr><td>
-   <a href='controleur/modificationAttributions.php?action=demanderModifAttrib'>
+   <a href='index.php?action=modificationAttributions&modif=demanderModifAttrib'>
    Effectuer ou modifier les attributions</a></td></tr></table><br><br>";
    
    // POUR CHAQUE ÉTABLISSEMENT : AFFICHAGE D'UN TABLEAU COMPORTANT 2 LIGNES 
    // D'EN-TÊTE ET LE DÉTAIL DES ATTRIBUTIONS
-   $req=obtenirReqEtablissementsAyantChambresAttribuées();
-   $rsEtab=$connexion->query($req);
-   $lgEtab=$rsEtab->fetch(PDO::FETCH_ASSOC);
+   $req = $model->obtenirReqEtablissementsAyantChambresAttribuées();
+   $rsEtab = $connexion->query($req);
+   $lgEtab = $rsEtab->fetch(PDO::FETCH_ASSOC);
    // BOUCLE SUR LES ÉTABLISSEMENTS AYANT DÉJÀ DES CHAMBRES ATTRIBUÉES
-   while($lgEtab!=FALSE)
+   while($lgEtab != FALSE)
    {
-      $idEtab=$lgEtab['id'];
-      $nomEtab=$lgEtab['nom'];
+      $idEtab = $lgEtab['id'];
+      $nomEtab = $lgEtab['nom'];
    
       echo "
       <table width='75%' cellspacing='0' cellpadding='0' align='center' 
       class='tabQuadrille'>";
       
-      $nbOffre=$lgEtab["nombreChambresOffertes"];
-      $nbOccup=obtenirNbOccup($connexion, $idEtab);
+      $nbOffre = $lgEtab["nombreChambresOffertes"];
+      $nbOccup = $model->obtenirNbOccup($connexion, $idEtab);
       // Calcul du nombre de chambres libres dans l'établissement
       $nbChLib = $nbOffre - $nbOccup;
       
@@ -71,31 +54,31 @@ if ($nbEtab!=0)
         
       // AFFICHAGE DU DÉTAIL DES ATTRIBUTIONS : UNE LIGNE PAR GROUPE AFFECTÉ 
       // DANS L'ÉTABLISSEMENT       
-      $req=obtenirReqGroupesEtab($idEtab);
-      $rsGroupe=$connexion->query($req);
-      $lgGroupe=$rsGroupe->fetch(PDO::FETCH_ASSOC);
+      $req = $model->obtenirReqGroupesEtab($idEtab);
+      $rsGroupe = $connexion->query($req);
+      $lgGroupe = $rsGroupe->fetch(PDO::FETCH_ASSOC);
 
                
       // BOUCLE SUR LES GROUPES (CHAQUE GROUPE EST AFFICHÉ EN LIGNE)
-      while($lgGroupe!=FALSE)
+      while($lgGroupe != FALSE)
       {
-         $idGroupe=$lgGroupe['id'];
-         $nomGroupe=$lgGroupe['nom'];
+         $idGroupe = $lgGroupe['id'];
+         $nomGroupe = $lgGroupe['nom'];
          echo "
          <tr class='ligneTabQuad'>
             <td width='65%' align='left'>$nomGroupe</td>";
          // On recherche si des chambres ont déjà été attribuées à ce groupe
          // dans l'établissement
-         $nbOccupGroupe=obtenirNbOccupGroupe($connexion, $idEtab, $idGroupe);
+         $nbOccupGroupe = $model->obtenirNbOccupGroupe($connexion, $idEtab, $idGroupe);
          echo "
             <td width='35%' align='left'>$nbOccupGroupe</td>
          </tr>";
-         $lgGroupe=$rsGroupe->fetch(PDO::FETCH_ASSOC);
+         $lgGroupe = $rsGroupe->fetch(PDO::FETCH_ASSOC);
       } // Fin de la boucle sur les groupes
       
       echo "
       </table><br>";
-      $lgEtab=$rsEtab->fetch(PDO::FETCH_ASSOC);
+      $lgEtab = $rsEtab->fetch(PDO::FETCH_ASSOC);
    } // Fin de la boucle sur les établissements
 }
 
