@@ -17,7 +17,7 @@ if ($_REQUEST['action'] == 'demanderSupprEtab')
    echo "
    <br><center><h5>Souhaitez-vous vraiment supprimer l'établissement $nom ? 
    <br><br>
-   <a href='index.php?action=supressionEtablissement&modif=validerSupprEtab&id=$id'>
+   <a href='index.php?action=supressionEtablissement&action=validerSupprEtab&id=$id'>
    Oui</a>&nbsp; &nbsp; &nbsp; &nbsp;
    <a href='index.php?action=listeEtablissements'>Non</a></h5></center>";
 }

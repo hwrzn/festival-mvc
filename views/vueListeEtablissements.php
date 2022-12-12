@@ -31,7 +31,7 @@ class='tabNonQuadrille'>
          Voir détail</a></td>
          
          <td width='16%' align='center'> 
-         <a href='index.php?action=modificationEtablissement&id=$id&modif=demanderModifEtab'>
+         <a href='index.php?action=modificationEtablissement&id=$id&action=demanderModifEtab'>
          Modifier</a></td>";
       	
          // S'il existe déjà des attributions pour l'établissement, il faudra
@@ -40,7 +40,7 @@ class='tabNonQuadrille'>
 			{
             echo "
             <td width='16%' align='center'> 
-            <a href='index.php?action=supressionEtablissement&id=$id&modif=demanderSupprEtab'>
+            <a href='index.php?action=supressionEtablissement&id=$id&action=demanderSupprEtab'>
             Supprimer</a></td>";
          }
          else
@@ -55,7 +55,7 @@ class='tabNonQuadrille'>
    }
    echo "
    <tr class='ligneTabNonQuad'>
-      <td colspan='4'><a href='index.php?action=creationEtablissement&modif=demanderCreEtab'>
+      <td colspan='4'><a href='index.php?action=creationEtablissement&action=demanderCreEtab'>
       Création d'un établissement</a ></td>
   </tr>
 </table>";

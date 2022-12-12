@@ -17,13 +17,13 @@
 
   public function creationEtablissement($connexion, $model, $errors)
   {
-    $modif=$_REQUEST['modif'];
+    $action=$_REQUEST['action'];
     include 'views/vueCreationEtablissement.php';
   }
 
   public function modificationEtablissement($connexion, $model, $errors)
   {
-    $modif=$_REQUEST['modif'];
+    $action=$_REQUEST['action'];
     include 'views/vueModificationEtablissement.php';
   }
 
